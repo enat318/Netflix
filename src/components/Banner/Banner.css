@@ -31,7 +31,7 @@
   font-size: 1rem; /* Responsive font size */
 }
 
-.banner-buttons {
+.banner-button {
   cursor: pointer;
   color: #fff;
   outline: none;
@@ -93,7 +93,7 @@
     width: 90%; /* Adjust width for smaller screens */
   }
 
-  .banner-buttons {
+  .banner-button {
     font-size: 3vw; /* Adjust font size for buttons */
     padding: 0.8rem 1.5rem; /* Adjust padding for smaller screens */
   }
@@ -112,4 +112,3 @@
     font-size: 4vw; /* Further adjust font size for buttons */
   }
 }
-  

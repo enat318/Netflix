@@ -1,55 +1,55 @@
-import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
-import axios from "../../utlis/axios"
-import requestes from "../../utlis/requestes"
-import "./Banner.css"
+import { useEffect, useState } from "react";
+import requests from "../../utlis/requestes.jsx";
+import instance from "../../utlis/axios.jsx"
+import "./Banner.css";
 
+const Banner = () => {
+  let truncate = (overview, maxLength) => {
+    return overview?.length > maxLength
+      ? overview.slice(0, maxLength) + "..."
+      : overview;
+  };
 
-
-function Banner() {
-  const [movie, setMovie] = useState({});
+  let [movie, setMovie] = useState({});
 
   useEffect(() => {
-    async function fetchData() {
-      const request= await axios.get(requestes.fetchNetflixOriginals);
-      setMovie(
-        request.data.results[
-          Math.floor(Math.random() * request.data.results.length + 1)
-        ]
-      );
-      // console.log(Math.floor(Math.random()*request.data.results.length + 1))
-      return request;
-    }
-    fetchData();
+    (async () => {
+      try {
+        let request = await instance.get(requests.fetchNetflixOriginals);
+        console.log(request);
+        setMovie(
+          request.data.results[
+            Math.floor(Math.random() * request.data.results.length)
+          ]
+        );
+      } catch (error) {
+        console.log("error", error);
+      }
+    })();
   }, []);
 
-  function truncate(str, n) {
-    return str?.length > n ? str.substr(0, n - 1) + "...." : str;
-  }
   return (
     <div
       className="banner"
       style={{
-        backgroundImage: `url('https://image.tmdb.org/t/p/original${movie.backdrop_path}')`,
-        backgroundSize: `cover`,
-        backgroundPosition: `center center`,
-        backgroundRepeat: `no-repeat`,
+        backgroundSize: "cover",
+        backgroundImage: `URL("https://image.tmdb.org/t/p/original${movie?.backdrop_path}")`,
+        backgroundPosition: "center",
       }}
     >
-      <div className="banner__contents">
-        <h1 className="banner__title">
-          {movie?.tittle || movie?.name || movie?.original_name}
+      <div className="banner-contents">
+        <h1 className="banner-title">
+          {movie?.title || movie?.name || movie?.original_name}
         </h1>
-        <div className="banner__buttons">
-          <button className="banner__button play">play </button>
-          <button className="banner__button">my list</button>
+        <div className="banner-buttons">
+          <button className="banner-button play">Play</button>
+          <button className="banner-button">My List</button>
         </div>
-        <h1 className="banner__description">{truncate(movie?.overview, 150)}</h1>
+        <h1 className="banner-description">{truncate(movie?.overview, 150)}</h1>
       </div>
-      <div className="banner__fadeBottom" />
+      <div className="banner-fadebottom" />
     </div>
   );
-}
+};
 
 export default Banner;
