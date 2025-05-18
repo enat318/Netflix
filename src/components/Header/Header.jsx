@@ -1,6 +1,5 @@
-import React from 'react'
-import "./Header.css"
-import logo from "../../assets/netflix.png"
+import "./Header.css";
+import logo from "../../assets/netflix.png";
 import { IoSearch } from "react-icons/io5";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { MdOutlineAccountBox } from "react-icons/md";
@@ -12,9 +11,9 @@ function Header() {
         <div className="header-container">
           <div className="header-left">
             <ul>
-                <li>
-                    <img src={logo}alt="netflix logo" />
-                </li>
+              <li>
+                <img src={logo} alt="netflix logo" />
+              </li>
               <li>Netflix</li>
               <li>Home</li>
               <li>Tv Show</li>
@@ -46,4 +45,4 @@ function Header() {
   );
 }
 
-export default Header
+export default Header;
