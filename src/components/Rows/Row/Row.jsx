@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import "./Row.css";
 import YouTube from "react-youtube";
-import movieTrailer from "movie-Trailer";
+import movieTrailer from "movie-trailer";
 import instance from "../../../utlis/axios"
 
   
